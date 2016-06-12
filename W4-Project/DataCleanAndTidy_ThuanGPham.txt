@@ -1,4 +1,4 @@
-"SubjectV1" "ActivityName" "UnitDomain" "Acceleration" "JerkSignal" "MagnitudeSignal" "Variable" "Direction" "average"
+"Subject" "ActivityName" "UnitDomain" "Acceleration" "JerkSignal" "MagnitudeSignal" "Variable" "Direction" "average"
 1 "LAYING" "Time" "NA" "NA" "NA" "Mean" "X" -0.016553093978
 1 "LAYING" "Time" "NA" "NA" "NA" "Mean" "Y" -0.064486124088
 1 "LAYING" "Time" "NA" "NA" "NA" "Mean" "Z" 0.14868943626
