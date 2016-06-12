@@ -60,7 +60,7 @@ Good luck!
       +Read in the Features.txt file and use **grepl** to extract only **mean** and **std** features. Get the column index, and create a column names list to subsetting  only those columns from dtMain. 
   8. **Uses descriptive activity names to name the activities** 
       +Read in the activity_labels.txt file into a data table called dtActivityNamesOrig, then merge that data table with dtMain by ActivityNum (YV1)
-  9.**Appropriately labels the data set with descriptive variable names**
+  9. **Appropriately labels the data set with descriptive variable names**
       + create a tall and narrow dataset by using **melt** and reassign that back to **dtMain**
       + merge dtMain with the dtFeaturesOrig to include the features column with the dtMain data table.
       + make sure that dtMain only contain the "mean" or "std" measurements
