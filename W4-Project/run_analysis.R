@@ -6,7 +6,7 @@ setwd("C:/DataScience/Clean Data/Project/")
 dataDir <-file.path(getwd(),"UCI HAR Dataset")
 url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 
-#download.file(url, file.path(getwd(),"HARdataset.zip"))
+download.file(url, file.path(getwd(),"HARdataset.zip"))
 
 #Manually Unzip HARdataset.zip file and save it to "C:\DataScience\Clean Data\Project\UCI HAR Dataset"
 
@@ -56,7 +56,8 @@ setkey(dtMain, SubjectV1, YV1)
 dtFeaturesOrig<-data.table(read.table(file.path(dataDir,"features.txt")))
 head(dtFeaturesOrig,3)
 dtFeaturesOrig <-dtFeaturesOrig[grepl("mean\\(\\)|std\\(\\)",dtFeaturesOrig$V2)]
-dtFeaturesOrig
+onlyMeanAndSD<-dtFeaturesOrig
+
 head(onlyMeanAndSD)
 
 #The value in V1 is the column number-> combining it with "V" label
