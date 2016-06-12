@@ -71,4 +71,6 @@ Good luck!
       + split out all the different columns that are stored within the feature names: time,frequency, instrument, Acceleration, Direction, Jerk, Magnitude, CalculationType
   10. **creates a second, independent tidy data set with the average**
       + create a dtTidy data table to store the subsetting of the dtMain, along with Average column for each variable for each activity and each subject.
+      + use write.table to output the tidy data set into to a file named: DataCleanAndTidy_ThuanGPham.txt
+  11. Use **knitr** to create the run_analysis.md file
   
