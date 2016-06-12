@@ -23,22 +23,22 @@ Direction       | The angular velocity of the magnitude of the jerk signal are e
 average         | average of each variable for each activity and each subject
 
 ### Sample Data:
-----------------------------------
-Subject         | ActivityName|UnitDomain|Acceleration|JerkSignal|MagnitudeSignal|CalculationType|Direction|average"
-----------------|-----------------
-1|LAYING|Time|NA|NA|NA|Mean|X|-0.016553093978
-1|LAYING|Time|NA|NA|NA|Mean|Y|-0.064486124088
-1|LAYING|Time|NA|NA|NA|Mean|Z|0.14868943626
-1|LAYING|Time|NA|NA|NA|SD|X|-0.87354386782
-1|LAYING|Time|NA|NA|NA|SD|Y|-0.9510904402
-1|LAYING|Time|NA|NA|NA|SD|Z|-0.9082846626
-1|LAYING|Time|NA|NA|Magnitude|Mean|NA|-0.874759548
-1|LAYING|Time|NA|NA|Magnitude|SD|NA|-0.81901016976
-1|LAYING|Time|NA|Jerk|NA|Mean|X|-0.107270949192
-1|LAYING|Time|NA|Jerk|NA|Mean|Y|-0.04151728689
-1|LAYING|Time|NA|Jerk|NA|Mean|Z|-0.0740501211
-1|LAYING|Time|NA|Jerk|NA|SD|X|-0.9186085208
-1|LAYING|Time|NA|Jerk|NA|SD|Y|-0.9679072436
-1|LAYING|Time|NA|Jerk|NA|SD|Z|-0.9577901596
-1|LAYING|Time|NA|Jerk|Magnitude|Mean|NA|-0.96346103
-1|LAYING|Time|NA|Jerk|Magnitude|SD|NA|-0.9358409828  
+-----------------------------------------------------------------------------------------------------------------
+Subject| ActivityName|UnitDomain   |Acceleration |JerkSignal   |MagnitudeSignal|CalculationType|Direction|average
+-------|-------------|-------------|-------------|-------------|---------------|---------------|---------|-------
+1      |LAYING       |Time         |NA           |NA           |NA             |Mean           |X        |-0.016553093978
+1      |LAYING       |Time         |NA           |NA           |NA             |Mean           |Y        |-0.064486124088
+1      |LAYING       |Time         |NA           |NA           |NA             |Mean           |Z        |0.14868943626
+1      |LAYING       |Time         |NA           |NA           |NA             |SD             |X        |-0.87354386782
+1      |LAYING       |Time         |NA           |NA           |NA             |SD             |Y        |-0.9510904402
+1      |LAYING       |Time         |NA           |NA           |NA             |SD             |Z        |-0.9082846626
+1      |LAYING       |Time         |NA           |NA           |Magnitude      |Mean           |NA       |-0.874759548
+1      |LAYING       |Time         |NA           |NA           |Magnitude      |SD             |NA       |-0.81901016976
+1      |LAYING       |Time         |NA           |Jerk         |NA             |Mean           |X        |-0.107270949192
+1      |LAYING       |Time         |NA           |Jerk         |NA             |Mean           |Y        |-0.04151728689
+1      |LAYING       |Time         |NA           |Jerk         |NA             |Mean           |Z        |-0.0740501211
+1      |LAYING       |Time         |NA           |Jerk         |NA             |SD             |X        |-0.9186085208
+1      |LAYING       |Time         |NA           |Jerk         |NA             |SD             |Y        |-0.9679072436
+1      |LAYING       |Time         |NA           |Jerk         |NA             |SD             |Z        |-0.9577901596
+1      |LAYING       |Time         |NA           |Jerk         |Magnitude      |Mean           |NA       |-0.96346103
+1      |LAYING       |Time         |NA           |Jerk         |Magnitude      |SD             |NA       |-0.9358409828  
