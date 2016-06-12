@@ -13,6 +13,7 @@ This code book is used to describe the dataset generated from the run_analysis.R
   
 ### Data Colums:
 Column Name| Description
+-------------------------
 Subject|Unique Identifier for the subject
 ActivityName| Name of the activities. Acceptable values are:  
 										1 WALKING
