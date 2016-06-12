@@ -1,6 +1,6 @@
 #download the dataset.zip
-#install.packages("reshape2")
-#install.packages("dplyr")
+install.packages("reshape2")
+install.packages("dplyr")
 
 setwd("C:/DataScience/Clean Data/Project/")
 dataDir <-file.path(getwd(),"UCI HAR Dataset")
@@ -115,7 +115,7 @@ cols <- matrix(c(RegFind("BodyAcc"), RegFind("GravityAcc")), ncol = nrow(rows))
 dtMain$Acceleration <- factor(cols %*% rows, labels = c(NA,"Body", "Gravity"))
 #get the mean and std 
 cols <- matrix(c(RegFind("mean()"), RegFind("std()")), ncol = nrow(rows))
-dtMain$Variable <- factor(cols %*% rows, labels = c("Mean", "SD"))
+dtMain$CalculationType <- factor(cols %*% rows, labels = c("Mean", "SD"))
 
 # Get Jerk and Magniture Columns
 dtMain$JerkSignal <- factor(RegFind("Jerk"), labels = c(NA, "Jerk"))
@@ -130,8 +130,17 @@ dtMain$Direction <- factor(cols %*% rows, labels = c(NA, "X", "Y", "Z"))
 head(dtMain)
 
 #5. create a tidy dataset
-setkey(dtMain, SubjectV1, ActivityName,UnitDomain,Acceleration,JerkSignal,MagnitudeSignal,Variable,Direction)
+setkey(dtMain, SubjectV1, ActivityName,UnitDomain,Acceleration,JerkSignal,MagnitudeSignal,CalculationType,Direction)
 
-dtTidy <- dtMain[, list(count = .N, average = mean(value)), by = key(dtMain)]
-outfile <-file.path(getwd(),"DataCleanAndTidy_ThuanGPham_2.txt")
+dtTidy <- dtMain[, list(average = mean(value)), by = key(dtMain)]
+setnames(dtTidy,"SubjectV1","Subject")
+outfile <-file.path(getwd(),"DataCleanAndTidy_ThuanGPham.txt")
 write.table(dtTidy,file=outfile,append=FALSE,row.names = FALSE)
+
+install.packages("knitr")
+install.packages("rmarkdown")
+library(knitr)
+library(rmarkdown)
+
+knit("run_analysis.Rmd", output = "run_analysis.md", encoding = "ISO8859-1", quiet = TRUE)
+
