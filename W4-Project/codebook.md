@@ -15,12 +15,12 @@ Column Name     | Description
 ----------------|-----------------
 Subject         |Unique Identifier for the subject
 ActivityName    | Name of the activities. Acceptable values are:  
-										1 WALKING
-										2 WALKING_UPSTAIRS
-										3 WALKING_DOWNSTAIRS
-										4 SITTING
-										5 STANDING
-										6 LAYING
+				|						1 WALKING
+				|						2 WALKING_UPSTAIRS
+				|						3 WALKING_DOWNSTAIRS
+				|						4 SITTING
+				|						5 STANDING
+				|						6 LAYING
 UnitDomain      | The domain for the measurement: Time Domain or Freq (Frequency) Domain
 Acceleration    | The acceleration can be Body or Gravity
 JerkSignal      | The jerk signal.
