@@ -11,9 +11,9 @@ This code book is used to describe the dataset generated from the run_analysis.R
 ### Data Colums:
 --------------------------------------------------------------------------------------------------------
 			|Column Name     			| Description
------------	|				 			|	----------------------------------------------------------------------- |
+------------|---------------------------|---------------------------------------------------------------------------|
 	|	*	|	Subject		 			|	The Subject Identifier													|
-	|	*	|	Activity	 			|	Name of the activities. Acceptable values are: 1, WALKING, 2 WALKING_UPSTAIRS,3 WALKING_DOWNSTAIRS,4 SITTING,5 STANDING,6 LAYING 	|
+	|	*	|	Activity	 			|	Name of the activities. 												|
 	|	*	|	tBodyAccmeanX			|	Mean Body Acceleration in X Axis in Time Domain							|
 	|	*	|	tBodyAccmeanY			|	Mean Body Acceleration in Y Axis in Time Domain							|
 	|	*	|	tBodyAccmeanZ			|	Mean Body Acceleration in Z Axis in Time Domain							|
