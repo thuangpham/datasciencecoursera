@@ -5,9 +5,9 @@ date: "June 13, 2016"
 output: html_document
 ---
 
-## Code book for the DataCleanAndTidy_ThuanGPham.txt
+## Readme 
 This code book is used to describe the dataset generated from the run_analysis.R program
-  
+
 ### Data Colums:
 --------------------------------------------------------------------------------------------------------
 |Column Name     			| Description
