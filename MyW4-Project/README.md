@@ -43,8 +43,6 @@ Good luck!
   3. Install and load the following packages:
       + reshape2
       + dplyr
-      + knitr
-      + rmarkdown
   4. Load the following packages:
       + stringr
   5. Read in the following data files and store them in the data.tables:
