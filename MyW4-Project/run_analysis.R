@@ -10,6 +10,7 @@ download.file(url, file.path(getwd(),"HARdataset.zip"))
 
 #Manually Unzip HARdataset.zip file and save it to "C:\DataScience\Clean Data\Project\UCI HAR Dataset"
 
+unzip("./HARdataset.zip")
 
 #load data.table package
 library(data.table)
