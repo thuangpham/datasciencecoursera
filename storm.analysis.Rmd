@@ -1,0 +1,82 @@
+---
+title: "The Impact of Weather Events in the U.S.A"
+author: "Thuan G Pham"
+date: "August 21, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+Severe Weather events have tremendous impact to the population across the United States such as Katrina and many others.
+
+The NOAA Storm Database tracks the severe weather events.  
+
+Using the storm data provided by NOAA which can be accessed here [https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2], this project will explore the following questions of weather events across the United States:
+
+1. Which types of events are most harmful with respect to population health?
+
+2. Which types of events have the greatest economic consequences?
+
+# Synopsis
+
+Through the analysis of the data, we see that Tornadoes are the most dangerous weather events in the U.S. with respect to fatalities follow by Excessive Heat, Flash Flood, Heat and Lightning. We also find that Tornadoes are the most dangerous weather events in the U.S. with respect to injuries follow by Thunderstorm wind, Flood, Excessive Heat, And Lightning.  These events are quite harmful to the population.
+
+## Load the data
+
+```{r cache=TRUE}
+library(plyr)
+library(ggplot2)
+library(gridExtra)
+setwd("C:/DataScience/Reproducible Research/W4 Project")
+stormData <- read.csv(bzfile("repdata-data-StormData.csv.bz2"))
+```
+
+## Which events are most harmful with respect to the population health?
+
+The NOAA storm data has 2 columns which indicate fatalities and injuries.  We will extract and tally these information for each event and sort based on the highest value to find which are the top 5 event types are the most harmful to the population.
+
+```{r cache=TRUE}
+harmfulEvents <- stormData[,c("EVTYPE","FATALITIES","INJURIES")]
+
+harmfulEventsSummarize <- ddply(harmfulEvents, .(EVTYPE), summarize,
+                    fatalities = sum(FATALITIES),
+                    injuries = sum(INJURIES))
+
+fatalities_events <- head(harmfulEventsSummarize[order(harmfulEventsSummarize$fatalities, decreasing = T), ], 5)
+
+injuries_events <- head(harmfulEventsSummarize[order(harmfulEventsSummarize$injuries, decreasing = T), ],5)
+```
+
+###Plot for Top 5 Severe Weather Events with Highest Fatalities
+```{r cache=TRUE}
+ggplot(data=fatalities_events,
+             aes(x=reorder(EVTYPE, fatalities), y=fatalities, fill=fatalities)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    title(main="Top 5 Weather Event Types with the most fatalities")
+    ylab("Total number of fatalities") +
+    xlab("Event type") +
+    theme(legend.position="none")
+    
+
+```
+
+
+###Plot for Top 5 Severe Weather Events with Highest Injuries
+```{r cache=TRUE}
+ggplot(data=injuries_events,
+             aes(x=reorder(EVTYPE, injuries), y=injuries, fill=injuries)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    title(main="Top 5 Weather Event Types with the most injuries")
+    ylab("Total number of injuries") +
+    xlab("Event type") +
+    theme(legend.position="none")
+
+```
+
+
