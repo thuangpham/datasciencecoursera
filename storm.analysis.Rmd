@@ -57,9 +57,8 @@ ggplot(data=fatalities_events,
              aes(x=reorder(EVTYPE, fatalities), y=fatalities, fill=fatalities)) +
     geom_bar(stat="identity") +
     coord_flip() +
-    title(main="Top 5 Weather Event Types with the most fatalities")
     ylab("Total number of fatalities") +
-    xlab("Event type") +
+    xlab("Weather Event type") +
     theme(legend.position="none")
     
 
@@ -72,9 +71,8 @@ ggplot(data=injuries_events,
              aes(x=reorder(EVTYPE, injuries), y=injuries, fill=injuries)) +
     geom_bar(stat="identity") +
     coord_flip() +
-    title(main="Top 5 Weather Event Types with the most injuries")
     ylab("Total number of injuries") +
-    xlab("Event type") +
+    xlab("Weather Event type") +
     theme(legend.position="none")
 
 ```
