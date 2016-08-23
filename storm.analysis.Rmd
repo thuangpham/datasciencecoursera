@@ -2,7 +2,7 @@
 title: "The Impact of Weather Events in the U.S.A"
 author: "Thuan G Pham"
 date: "August 21, 2016"
-output: html_document
+output: word_document
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +23,9 @@ Using the storm data provided by NOAA which can be accessed here [https://d396qu
 
 # Synopsis
 
-Through the analysis of the data, we see that Tornadoes are the most dangerous weather events in the U.S. with respect to fatalities follow by Excessive Heat, Flash Flood, Heat and Lightning. We also find that Tornadoes are the most dangerous weather events in the U.S. with respect to injuries follow by Thunderstorm wind, Flood, Excessive Heat, And Lightning.  These events are quite harmful to the population.
+The analysis of the data shows that Tornadoes are the most dangerous weather events in the U.S. with respect to fatalities follow by Excessive Heat, Flash Flood, Heat and Lightning. We also find that Tornadoes are the most dangerous weather events in the U.S. with respect to injuries follow by Thunderstorm wind, Flood, Excessive Heat, And Lightning.  These events are quite harmful to the population.
+
+The analysis of the data also shows that Floods are weather events which caused the most property damage in the U.S follow by Huricane, tornado, storm surge and Flash flood. We also find that Drought caused the most crop damage in the U.S follow by Flood, River Flood, ice storm and hail. 
 
 ## Load the data
 
@@ -36,7 +38,7 @@ stormData <- read.csv(bzfile("repdata-data-StormData.csv.bz2"))
 ```
 
 ## Which events are most harmful with respect to the population health?
-
+-----------------------------------------------------------------------
 The NOAA storm data has 2 columns which indicate fatalities and injuries.  We will extract and tally these information for each event and sort based on the highest value to find which are the top 5 event types are the most harmful to the population.
 
 ```{r cache=TRUE}
@@ -51,7 +53,15 @@ fatalities_events <- head(harmfulEventsSummarize[order(harmfulEventsSummarize$fa
 injuries_events <- head(harmfulEventsSummarize[order(harmfulEventsSummarize$injuries, decreasing = T), ],5)
 ```
 
-###Plot for Top 5 Severe Weather Events with Highest Fatalities
+
+### The Top 5 Severe Weather Events with Highest Fatalities
+The data shows that the top 5 weather event with the highest fatalities are:
+
+```{r echo=TRUE}
+print(fatalities_events[,c("EVTYPE","fatalities")])
+```
+
+### The plot of the top 5 Severe Weather events with highest Fatalities
 ```{r cache=TRUE}
 ggplot(data=fatalities_events,
              aes(x=reorder(EVTYPE, fatalities), y=fatalities, fill=fatalities)) +
@@ -65,7 +75,15 @@ ggplot(data=fatalities_events,
 ```
 
 
-###Plot for Top 5 Severe Weather Events with Highest Injuries
+###Top 5 Severe Weather Events with Highest Injuries
+
+The data shows that the top 5 weather event with the highest Injuries are:
+
+```{r echo=TRUE}
+print(injuries_events[,c("EVTYPE","injuries")])
+```
+
+### The plot of the top 5 Severe Weather events with highest Injuries
 ```{r cache=TRUE}
 ggplot(data=injuries_events,
              aes(x=reorder(EVTYPE, injuries), y=injuries, fill=injuries)) +
@@ -77,4 +95,91 @@ ggplot(data=injuries_events,
 
 ```
 
+## Which types of events have the greatest economic consequences?
+-----------------------------------------------------------------
+The PROPDMG and CROPDMG columns in the storm data contain the Property Damage cost and Crop Damage cost respectively. Calculating that will allow us see which weather event types have the most economic consequences.
 
+### Calculating the Property Damage
+
+Since the columns PROPDMGEXP and CROPDMGEXP contain the exponent indicator of the values in hundreds (h), thousands (k), millions (m), and billions (B), I am creating a function named GetDMGValue to calculate the real cost for each row based on the value of the PROPDMGEX and CROPDMGEXP.
+
+```{r cache=TRUE}
+
+GetDMGValue<- function(e,val) {
+    # h -> hundred, k -> thousand, m -> million, b -> billion
+    if (e %in% c('h', 'H'))
+        return((10**2) * val)
+    else if (e %in% c('k', 'K'))
+        return ((10**3) * val)
+    else if (e %in% c('m', 'M'))
+        return ((10**6) * val)
+    else if (e %in% c('b', 'B'))
+        return ((10**9) * val)
+    else if (!is.na(as.numeric(e))) # if a digit
+        return(as.numeric(e))
+    else if (e %in% c('', '-', '?', '+'))
+        return(0)
+    else {
+        stop("Invalid exponent value.")
+    }
+}
+
+stormData$PROGDMGVal<-mapply(GetDMGValue,stormData$PROPDMGEXP,stormData$PROPDMG)
+stormData$CROPDMGVal<-mapply(GetDMGValue,stormData$CROPDMGEXP,stormData$CROPDMG)
+
+```
+
+With the property damage cost and crop cost values added to storm data data frame, I am goin to summarize the cost for each types and sort them to select the top 5 event per categories.
+
+```{r cache=TRUE}
+costlyEvents <- stormData[,c("EVTYPE","PROGDMGVal","CROPDMGVal")]
+
+costlyEventsSummarize <- ddply(costlyEvents, .(EVTYPE), summarize,
+                    propertyCost = sum(PROGDMGVal),
+                    cropCost = sum(CROPDMGVal))
+
+propCostEvents <- head(costlyEventsSummarize[order(costlyEventsSummarize$propertyCost, decreasing = T), ], 5)
+
+cropCostEvents <- head(costlyEventsSummarize[order(costlyEventsSummarize$cropCost, decreasing = T), ],5)
+
+```
+
+###Top 5 Severe Weather Events with Highest Property Damage
+The data shows that the top 5 weather event with the highest Property Damage are:
+
+```{r echo=TRUE}
+print(propCostEvents[,c("EVTYPE","propertyCost")])
+```
+
+### The plot of the top 5 Severe Weather events with Highest Property Damage
+```{r cache=TRUE}
+ggplot(data=propCostEvents,
+             aes(x=reorder(EVTYPE, propertyCost), y=propertyCost, fill=propertyCost)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    ylab("Total Property Damage in U.S Dollars") +
+    xlab("Weather Event type") +
+    theme(legend.position="none")
+    
+
+```
+
+
+###The Top 5 Severe Weather Events with Highest Crop Damage
+
+The data shows that the top 5 weather event with the highest Crop Damage are:
+```{r echo=TRUE}
+print(cropCostEvents[,c("EVTYPE","cropCost")])
+```
+
+### The plot of the top 5 Severe Weather events with Highest Crop Damage
+```{r cache=TRUE}
+ggplot(data=cropCostEvents,
+             aes(x=reorder(EVTYPE, cropCost), y=cropCost, fill=cropCost)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    ylab("Total Crop Damage in U.S Dollars") +
+    xlab("Weather Event type") +
+    theme(legend.position="none")
+
+```
